@@ -8,7 +8,7 @@ import (
 )
 
 func main () {
-dial, error := net.Dial("tcp", "127.0.0.1:8080")
+dial, error := net.Dial("tcp", "192.168.20.48:8080")
 if error != nil {
 	fmt.Println("error dialing")
 	log.Fatal(error)
