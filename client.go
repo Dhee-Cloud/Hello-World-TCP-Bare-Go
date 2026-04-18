@@ -15,7 +15,11 @@ func main() {
 	}
 
 	read := bufio.NewScanner(dial)
+	//NewScanner(dial) attaches to the connection and watches the entire stream. 
 	for read.Scan() {
+		//Then, each time Scan() is called, it grabs the next individual line from that stream
+		//so NewScanner covers the whole connection, while Scan() picks off one line at a time.
 		fmt.Println(read.Text())
+		 //listen.Text() reads and returns the data that Scan() just captured from the stream
 	}
 }
