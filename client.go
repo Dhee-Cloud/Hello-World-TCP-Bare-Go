@@ -1,23 +1,21 @@
-package main 
+package main
 
 import (
-	"net"
+	"bufio"
 	"fmt"
-	"io"
 	"log"
+	"net"
 )
 
-func main () {
-dial, error := net.Dial("tcp", "192.168.20.48:8080")
-if error != nil {
-	fmt.Println("error dialing")
-	log.Fatal(error)
-}	
+func main() {
+	dial, error := net.Dial("tcp", "127.0.0.1:8080")
+	if error != nil {
+		fmt.Println("error dialing")
+		log.Fatal(error)
+	}
 
-read, error := io.ReadAll(dial)
-if error != nil {
-	fmt.Println("error reading")
-	log.Fatal(error)
-}
-fmt.Println(string(read))
+	read := bufio.NewScanner(dial)
+	for read.Scan() {
+		fmt.Println(read.Text())
+	}
 }
